@@ -1,0 +1,42 @@
+###############################################################
+######## PLEASE DO NOT PROVIDE QUOTES IN THE PARAMETERS #######
+############################################################### 
+
+### Enter the directory where the outputs will be placed, please provide an absolute path ### 
+workdir=
+
+### Name of your experiment, a sub-directory with this name will be created in the workdir for outputs ### 
+name_reconstruction=
+
+### Path to the proxy records database, first column be the time steps and other columns the proxy records. Only txt and csv files are allowded. Please provide an absolute path ###
+path_database=
+
+### Absolute path of the file containing the climate mode, the first column must contain the time steps while the second must be the observations of the climate mode. Please provide an absolute path ###
+path_mode=
+
+### Year where the reconstruction starts ###
+y_start=
+
+### Year where the reconstruction stops (Must at least overlap the period on which the climate index is observed) ###
+y_stop=
+
+### Number of training/testing splits ###
+R=
+
+### Regression method to be used, must be "rf" for Random Forest, "enet" for Elastic Net, "pls" for Partial Least Squares or "pcr" for Principal Component Regression ###
+method=
+
+### Relative size of the training period given in frequency of the length of the total learning period. Must be between 0 and 1, both excluded ###
+freq_train=
+
+### Does the method apply a correlation tests on the training samples to perform a proxy records selction, set T for True and F for False ###
+tests=
+
+### Confidence level of the correlation tests. Must be between 0 and 1, 1 exluded. Ignored if tests is et to F ###
+conf=
+
+### Set the random seed (facultative). Default is 3. ###
+seed=
+
+### Do you want do display the execution progress in % of time (facultative). Set T for True and F for False. Default is T.
+trace=
