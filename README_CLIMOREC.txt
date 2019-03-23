@@ -13,7 +13,7 @@ CLIMOREC is composed of three main files:
     - path_database: Path to the proxy records database, first column be the time steps and other columns the proxy records. Only txt and csv files are allowded. Please provide an absolute path
     - path_mode: Path to the file containing the climate mode, the first column must contain the time steps while the second must be the observations of the climate mode. Only txt and csv files are allowded. Please provide an absolute path
     - y_start: Year where the reconstruction starts
-    - y_start: Year where the reconstruction stops
+    - y_stop: Year where the reconstruction stops
     - R: Number of training/testing splits
     - method: Regression method to be used, must be "rf" for Random Forest, "enet" for Elastic Net, "pls" for Partial Least Squares or "pcr" for Principal Component Regression 
     - freq_train: Relative size of the training samples given in frequency of the length of the total learning period. Must be between 0 and 1, both excluded
