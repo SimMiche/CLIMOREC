@@ -1,4 +1,10 @@
 
+if("glmnet" %in% rownames(installed.packages()) == FALSE) {install.packages("glmnet")}
+if("pls" %in% rownames(installed.packages()) == FALSE) {install.packages("pls")}
+if("randomForest" %in% rownames(installed.packages()) == FALSE) {install.packages("randomForest")}
+if("ncdf4" %in% rownames(installed.packages()) == FALSE) {install.packages("ncdf4")}
+if("stringr" %in% rownames(installed.packages()) == FALSE) {install.packages("stringr")}
+
 library(glmnet)
 library(pls)
 library(randomForest)
@@ -379,7 +385,8 @@ apply_rec=function(workdir='.',path_db,path_mode,y1,y2,method,R,freq_calib,tests
       	      if (tests){
        	      	 inds=c()
 	 	 for (j in 1:ncol(Xtrain)){
-             	     ser=Xtrain[,j]
+             	     
+		     ser=Xtrain[,j]
 		     
              	     if (sum(!is.na(ser))>0){
 	     
