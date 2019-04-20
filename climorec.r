@@ -273,8 +273,8 @@ apply_rec=function(workdir='.',path_db,path_mode,y1,y2,method,R,freq_calib,tests
 
        my=mean(Y)
        sdy=sqrt(var(Y))
-       ttrains=array(NA,c(R,as.integer(nrow(X)*freq_calib)))
-       ttests=array(NA,c(R,nrow(X)-as.integer(nrow(X)*freq_calib)))
+       ttrains=array(NA,c(R,round(nrow(X)*freq_calib)))
+       ttests=array(NA,c(R,nrow(X)-round(nrow(X)*freq_calib)))
        if (method=='pcr'){
        	  for (r in 1:R){
 	  if (trace) print(paste(round(r/R,1)*100,'% completed',sep=""))
@@ -365,7 +365,7 @@ apply_rec=function(workdir='.',path_db,path_mode,y1,y2,method,R,freq_calib,tests
 
   if (method=='pls'){
     for (r in 1:R){
-        if (trace) print(paste(round(r/5,1)*100,'% completed',sep=""))
+        if (trace) print(paste(round(r/R,1)*100,'% completed',sep=""))
         datas=datasb
         inds=c(F)
      	while (sum(inds)<=1){
