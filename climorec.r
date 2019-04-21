@@ -550,7 +550,7 @@ apply_rec=function(workdir='.',path_db,path_mode,y1,y2,method,R,freq_calib,tests
   }
   if (method=='rf'){
       for (r in 1:R){
-      	  if (trace) print(paste(round(r:R,1)*100,'% completed',sep=""))
+      	  if (trace) print(paste(round(r/R,1)*100,'% completed',sep=""))
           datas=datasb
 
           inds=c(F)
@@ -584,7 +584,7 @@ apply_rec=function(workdir='.',path_db,path_mode,y1,y2,method,R,freq_calib,tests
         	   }
         	   Xtrain=Xtrain[,inds]
         	   datas=datas[,inds]
-        	   Xtest=test[,inds]
+        	   Xtest=Xtest[,inds]
       	     }
       	     else {inds=c(T,T)}
           }
@@ -594,7 +594,7 @@ apply_rec=function(workdir='.',path_db,path_mode,y1,y2,method,R,freq_calib,tests
 	  for (j in 1:ncol(Xtrain)){
               Xtest[,j]=(Xtest[,j]-mean(Xtrain[,j]))/sqrt(var(Xtrain[,j]))
               datas[,j]=(datas[,j]-mean(Xtrain[,j]))/sqrt(var(Xtrain[,j]))
-              Xtrain[,j]=(train[,j]-mean(Xtrain[,j]))/sqrt(var(Xtrain[,j]))
+              Xtrain[,j]=(Xtrain[,j]-mean(Xtrain[,j]))/sqrt(var(Xtrain[,j]))
       	   }
       
 	   ### 10-folds cross validation for Random Forest ###
