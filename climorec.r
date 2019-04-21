@@ -323,9 +323,9 @@ apply_rec=function(workdir='.',path_db,path_mode,y1,y2,method,R,freq_calib,tests
 
 	  ### Each series is normalized to the mean and the standard deviation of the training sample ###
           for (j in 1:ncol(Xtrain)){
-              Xtrain[,j]=(Xtrain[,j]-mean(Xtrain[,j]))/sqrt(var(Xtrain[,j]))
 	      Xtest[,j]=(Xtest[,j]-mean(Xtrain[,j]))/sqrt(var(Xtrain[,j]))
 	      datas[,j]=(datas[,j]-mean(Xtrain[,j]))/sqrt(var(Xtrain[,j]))
+    	      Xtrain[,j]=(Xtrain[,j]-mean(Xtrain[,j]))/sqrt(var(Xtrain[,j]))
           }
           q_opt=kf_pcr(method,Xtrain,Ytrain)
             
@@ -409,9 +409,9 @@ apply_rec=function(workdir='.',path_db,path_mode,y1,y2,method,R,freq_calib,tests
           dfall=data.frame(Ytrain,Xtrain)
       
           for (j in 1:ncol(Xtrain)){
-      	      Xtrain[,j]=(Xtrain[,j]-mean(Xtrain[,j]))/sqrt(var(Xtrain[,j]))
 	      Xtest[,j]=(Xtest[,j]-mean(Xtrain[,j]))/sqrt(var(Xtrain[,j]))
 	      datas[,j]=(datas[,j]-mean(Xtrain[,j]))/sqrt(var(Xtrain[,j]))
+	      Xtrain[,j]=(Xtrain[,j]-mean(Xtrain[,j]))/sqrt(var(Xtrain[,j]))
           }
       
       
