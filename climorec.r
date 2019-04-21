@@ -407,14 +407,7 @@ apply_rec=function(workdir='.',path_db,path_mode,y1,y2,method,R,freq_calib,tests
           }
           namdatas=c(namdatas,names(Xtrain))
           dfall=data.frame(Ytrain,Xtrain)
-      
-          for (j in 1:ncol(Xtrain)){
-	      Xtest[,j]=(Xtest[,j]-mean(Xtrain[,j]))/sqrt(var(Xtrain[,j]))
-	      datas[,j]=(datas[,j]-mean(Xtrain[,j]))/sqrt(var(Xtrain[,j]))
-	      Xtrain[,j]=(Xtrain[,j]-mean(Xtrain[,j]))/sqrt(var(Xtrain[,j]))
-          }
-      
-      
+     
           plsall=plsr(Ytrain~.,data=dfall)
       
 	  q_opt=kf_pls(method,Xtrain,Ytrain)
