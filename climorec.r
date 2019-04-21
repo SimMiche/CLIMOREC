@@ -164,7 +164,9 @@ kf_pls=function(method,x,y){
 	 rmses[j]=rmses[j]+mean((pred-ytest)^2)
       }
     }
-     rmses[rmses==0]=NA 
+    
+    rmses[rmses==0]=NA 
+    rmses[max(which(!is.na(rmses)))]=NA 
     return(which.min(sqrt(rmses/nrow(x)))) 
   }
 }
@@ -207,7 +209,7 @@ kf_pcr=function(method,x,y){
       }
     }
     rmses[rmses==0]=NA
-    
+    rmses[max(which(!is.na(rmses)))]=NA 
     return(which.min(sqrt(rmses/nrow(x))))
   }
 }
