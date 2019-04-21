@@ -277,7 +277,7 @@ apply_rec=function(workdir='.',path_db,path_mode,y1,y2,method,R,freq_calib,tests
        ttests=array(NA,c(R,nrow(X)-round(nrow(X)*freq_calib)))
        if (method=='pcr'){
        	  for (r in 1:R){
-	  if (trace) print(paste(round(r/R,1)*100,'% completed',sep=""))
+	  if (trace) print(paste(round(r/R,3)*100,'% completed',sep=""))
 	  datas=datasb
 	  inds=c(F)
 	  while (sum(inds)<=1){
@@ -365,7 +365,7 @@ apply_rec=function(workdir='.',path_db,path_mode,y1,y2,method,R,freq_calib,tests
 
   if (method=='pls'){
     for (r in 1:R){
-        if (trace) print(paste(round(r/R,1)*100,'% completed',sep=""))
+        if (trace) print(paste(round(r/R,3)*100,'% completed',sep=""))
         datas=datasb
         inds=c(F)
      	while (sum(inds)<=1){
@@ -441,7 +441,7 @@ apply_rec=function(workdir='.',path_db,path_mode,y1,y2,method,R,freq_calib,tests
   if (method=='enet'){
     datas=datasb
     for (r in 1:R){  
-      if (trace) print(paste(round(r/R,1)*100,'% completed',sep=""))
+      if (trace) print(paste(round(r/R,3)*100,'% completed',sep=""))
       inds=c(F)
       while (sum( inds)<= 1){  
 
@@ -529,7 +529,7 @@ apply_rec=function(workdir='.',path_db,path_mode,y1,y2,method,R,freq_calib,tests
 
       mdf=glmnet(data.matrix(Xtrain),data.matrix(Ytrain),lambda=lbdopt,alpha=aopt)
       
-      pred=predict(mdf,data.matrix(Xtrain))
+      pred=predict(mdf,data.matrix(Xtest))
       pred=as.numeric(pred)
 
       rmses[r]=RMSE(as.numeric(pred),Ytest)
