@@ -406,6 +406,12 @@ apply_rec=function(workdir='.',path_db,path_mode,y1,y2,method,R,freq_calib,tests
                else {inds=c(T,T)}
           }
           namdatas=c(namdatas,names(Xtrain))
+	    
+	  for (j in 1:ncol(Xtrain)){
+	      Xtest[,j]=(Xtest[,j]-mean(Xtrain[,j]))/sqrt(var(Xtrain[,j]))
+	      datas[,j]=(datas[,j]-mean(Xtrain[,j]))/sqrt(var(Xtrain[,j]))
+    	      Xtrain[,j]=(Xtrain[,j]-mean(Xtrain[,j]))/sqrt(var(Xtrain[,j]))
+          }
           dfall=data.frame(Ytrain,Xtrain)
      
           plsall=plsr(Ytrain~.,data=dfall)
@@ -476,8 +482,6 @@ apply_rec=function(workdir='.',path_db,path_mode,y1,y2,method,R,freq_calib,tests
       npx[r]=ncol(Xtrain)      
       namdatas=c(namdatas,names(Xtrain))
 
-      dfall=data.frame(Ytrain,Xtrain)
-
       for (j in 1:ncol(Xtrain)){
         Xtest[,j]=(Xtest[,j]-mean(Xtrain[,j]))/sqrt(var(Xtrain[,j]))
         datas[,j]=(datas[,j]-mean(Xtrain[,j]))/sqrt(var(Xtrain[,j]))
@@ -485,6 +489,8 @@ apply_rec=function(workdir='.',path_db,path_mode,y1,y2,method,R,freq_calib,tests
       	
       }
 
+      dfall=data.frame(Ytrain,Xtrain)
+	    
       ### 10-folds cross validation for the Elastic net method ###
       a=seq(0,1,0.1)
       lbds=seq(0,5,0.2)
@@ -581,8 +587,6 @@ apply_rec=function(workdir='.',path_db,path_mode,y1,y2,method,R,freq_calib,tests
       	     }
       	     else {inds=c(T,T)}
           }
-      	  
-      	  dfall=data.frame(Ytrain,Xtrain)
       
 	  for (j in 1:ncol(Xtrain)){
               Xtest[,j]=(Xtest[,j]-mean(Xtrain[,j]))/sqrt(var(Xtrain[,j]))
@@ -590,6 +594,8 @@ apply_rec=function(workdir='.',path_db,path_mode,y1,y2,method,R,freq_calib,tests
               Xtrain[,j]=(Xtrain[,j]-mean(Xtrain[,j]))/sqrt(var(Xtrain[,j]))
       	   }
       
+	   dfall=data.frame(Ytrain,Xtrain)
+	      
 	   ### 10-folds cross validation for Random Forest ###
            mtrys=seq(as.integer(ncol(Xtrain))*0.1,as.integer(ncol(Xtrain)*0.9))
            scs=rep(0,length(mtrys))
