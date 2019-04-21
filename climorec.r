@@ -625,7 +625,7 @@ apply_rec=function(workdir='.',path_db,path_mode,y1,y2,method,R,freq_calib,tests
 
 	  rfopt=randomForest(Xtrain,Ytrain,mtry=mtryopt,ntree=200)
       	  
-      	  pred=as.numeric(predict(rfopt,train))
+      	  pred=as.numeric(predict(rfopt,Xtrain))
 
           rmses[r]=RMSE(pred,Ytest)      
       	  val_cors[r]=cor(pred,Ytest)
