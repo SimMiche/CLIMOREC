@@ -164,7 +164,7 @@ kf_pls=function(method,x,y){
 	 rmses[j]=rmses[j]+mean((pred-ytest)^2)
       }
     }
-
+     rmses[rmses==0]=NA 
     return(which.min(sqrt(rmses/nrow(x)))) 
   }
 }
