@@ -146,14 +146,14 @@ kf_pls=function(method,x,y){
       xtest=x[id,]
       ytrain=y[-id]
       ytest=y[id]
-      dfall=data.frame(ytrain,xtrain)
-      names(dfall)[which(names(dfall)=="Arc.Jamtland.Wilson.2016")]="Arc-Jamtland.Wilson.2016"
-      names(dfall)[which(names(dfall)=="NGRIP.s")]="NGRIP-s"
+      
 
       for (k in 1:ncol(xtrain)){
           xtrain[,k]=(xtrain[,k]-mean(xtrain[,k]))/sqrt(var(xtrain[,k]))
       	  xtest=(xtest-mean(xtrain[,k]))/sqrt(var(xtrain[,k]))
       }
+	    
+      dfall=data.frame(ytrain,xtrain)
 
       names(xtest)=names(dfall)[2:ncol(dfall)]
       plsall=plsr(ytrain~.,data=dfall)
