@@ -355,10 +355,16 @@ apply_rec=function(workdir='.',path_db,path_mode,y1,y2,method,R,freq_calib,tests
       
           for (i in 2:length(coefs)) pred_all=pred_all+coefs[i]*pcs_all[,i-1]
 
-          preds[r,]=pred_all
-          incerts[r]=sqrt(sum((pred_all[t %in% ty[samp]]-Ytrain)^2)/(length(Ytrain)-2)) 
+          pall=rep(NA,length(ty[samp]))
+      	  for (ttt in 1:length(ty[samp])){
+      	    pall[ttt]=pred_all[t==ty[samp][ttt]]
+      	  }
 
-	  residuals=pred_all[t %in% ty[samp]]-Ytrain                                     
+	  incerts[r]=sqrt(sum((pall-Ytrain)^2)/(length(Ytrain)-2))
+
+      	  preds[r,]=pred_all
+
+    	  residuals=pall-Ytrain                                   
                                                                  
           shapiros[r]=shapiro.test(residuals)$p.value 
 
@@ -428,13 +434,17 @@ apply_rec=function(workdir='.',path_db,path_mode,y1,y2,method,R,freq_calib,tests
       	  nses[r]=nse(Ytest,pred)
       
 	  pred_all=predict(plsall,datas)[,,q_opt]
-      	  incerts[r]=sqrt(sum((pred_all[t %in% ty[samp]]-Ytrain)^2)/(length(Ytrain)-2))
+	  
+      	  pall=rep(NA,length(ty[samp]))
+      	  for (ttt in 1:length(ty[samp])){
+      	    pall[ttt]=pred_all[t==ty[samp][ttt]]
+      	  }
 
-	  npx[r]=ncol(Xtrain)
+	  incerts[r]=sqrt(sum((pall-Ytrain)^2)/(length(Ytrain)-2))
 
-     	  preds[r,]=pred_all
+      	  preds[r,]=pred_all
 
-	  residuals=pred_all[t %in% ty[samp]]-Ytrain                                        
+    	  residuals=pall-Ytrain                                      
                                                                                              
           shapiros[r]=shapiro.test(residuals)$p.value 
       }
@@ -540,11 +550,16 @@ apply_rec=function(workdir='.',path_db,path_mode,y1,y2,method,R,freq_calib,tests
 
       pred_all=predict(mdf,data.matrix(datas))
       pred_all=as.numeric(pred_all)
-      incerts[r]=sqrt(sum((pred_all[t %in% ty[samp]]-Ytrain)^2)/(length(Ytrain)-2)) 
+      pall=rep(NA,length(ty[samp]))
+      	  for (ttt in 1:length(ty[samp])){
+      	    pall[ttt]=pred_all[t==ty[samp][ttt]]
+      	  }
+
+      incerts[r]=sqrt(sum((pall-Ytrain)^2)/(length(Ytrain)-2))
+
       preds[r,]=pred_all
 
-      residuals=pred_all[t %in% ty[samp]]-Ytrain                                       
-                                                                                             
+      residuals=pall-Ytrain                                                                      
       shapiros[r]=shapiro.test(residuals)$p.value 
 
     }
@@ -635,12 +650,16 @@ apply_rec=function(workdir='.',path_db,path_mode,y1,y2,method,R,freq_calib,tests
                 
       	  pred_all=predict(rfopt,datas)
      
-	  incerts[r]=sqrt(sum((pred_all[t %in% ty[samp]]-Ytrain)^2)/(length(Ytrain)-2)) 
-      	
-          preds[r,]=pred_all
+      	  pall=rep(NA,length(ty[samp]))
+      	  for (ttt in 1:length(ty[samp])){
+      	    pall[ttt]=pred_all[t==ty[samp][ttt]]
+      	  }
 
-	  residuals=pred_all[t %in% ty[samp]]-Ytrain
-	  
+	  incerts[r]=sqrt(sum((pall-Ytrain)^2)/(length(Ytrain)-2))
+
+      	  preds[r,]=pred_all
+
+    	  residuals=pall-Ytrain
 	  shapiros[r]=shapiro.test(residuals)$p.value
 
        }
