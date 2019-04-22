@@ -612,7 +612,8 @@ apply_rec=function(workdir='.',path_db,path_mode,y1,y2,method,R,freq_calib,tests
       	   }
       
 	   dfall=data.frame(Ytrain,Xtrain)
-	      
+	   npx[r]=ncol(Xtrain)
+	   
 	   ### 10-folds cross validation for Random Forest ###
            mtrys=seq(as.integer(ncol(Xtrain))*0.1,as.integer(ncol(Xtrain)*0.75))
            scs=rep(0,length(mtrys))
