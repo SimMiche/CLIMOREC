@@ -665,6 +665,8 @@ apply_rec=function(workdir='.',path_db,path_mode,y1,y2,method,R,freq_calib,tests
 
     	  residuals=pall-Ytrain
 	  shapiros[r]=shapiro.test(residuals)$p.value
+	  
+	  namdatas=c(namdatas,names(Xtrain))
 
        }
   }
